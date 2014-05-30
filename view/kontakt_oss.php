@@ -28,7 +28,7 @@ include 'include/head.html';
 <br />
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d127857.19856136846!2d10.7297739!3d59.95257110000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46416dfb8fcd3829%3A0xdd28d56d5a6e28e1!2sRolf+E.+Stenersens+all%C3%A9+9!5e0!3m2!1sno!2s!4v1401392933737"
-width="400" height="260" frameborder="0" style="border:0"></iframe>
+width="398" height="260" frameborder="0" style="border:0"></iframe>
 
 </div>
 

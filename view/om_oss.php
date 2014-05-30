@@ -18,11 +18,15 @@ Ansatte i firmaet er Andreas Askeland og Thomas Eikeberg.
 
 <div class="right">
 
-<img src="../view/img/andreas.jpg" width="240" />
+<div class="img">
+
+<img src="../view/img/andreas.jpg" width="235" />
 <br />
 <br />
 
-<img src="../view/img/thomas.jpg" width="240" />
+<img src="../view/img/thomas.jpg" width="235" />
+
+</div>
 
 </div>
 

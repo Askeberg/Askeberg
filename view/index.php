@@ -13,17 +13,17 @@ include 'include/head.html';
 </div>
 
 <div class="right">
-
-<img src="../view/img/mysql.png" width="240" />
+<!--
+<img src="../view/img/mysql.png" width="235" />
 <br />
 <br />
 
-<img src="../view/img/php.png" width="240" />
+<img src="../view/img/php.png" width="235" />
 <br />
 <br />
 
-<img src="../view/img/javascript.png" width="240" />
-
+<img src="../view/img/javascript.png" width="235" />
+-->
 </div>
 
 
