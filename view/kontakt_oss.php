@@ -1,5 +1,5 @@
 <?php
-include 'include/head.html';
+include 'include/head.php';
 ?>
 
 <div id="content">
@@ -60,11 +60,11 @@ H0601
 </div>
 
 <?php
-include 'include/foot.html';
+include 'include/foot.php';
 ?>
 
 </div>
-j
+
 <script type="text/javascript">
 	
 </script>

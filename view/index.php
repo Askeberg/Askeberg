@@ -1,5 +1,5 @@
 <?php
-include 'include/head.html';
+include 'include/head.php';
 ?>
 
 <div id="content">
@@ -13,6 +13,8 @@ include 'include/head.html';
 </div>
 
 <div class="right">
+
+<div class="img">
 <!--
 <img src="../view/img/mysql.png" width="235" />
 <br />
@@ -26,11 +28,13 @@ include 'include/head.html';
 -->
 </div>
 
+</div>
+
 
 </div>
 
 <?php
-include 'include/foot.html';
+include 'include/foot.php';
 ?>
 
 </div>

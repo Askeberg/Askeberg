@@ -1,5 +1,5 @@
 <?php
-include 'include/head.html';
+include 'include/head.php';
 ?>
 
 <div id="content">
@@ -34,7 +34,7 @@ Ansatte i firmaet er Andreas Askeland og Thomas Eikeberg.
 </div>
 
 <?php
-include 'include/foot.html';
+include 'include/foot.php';
 ?>
 
 </div>

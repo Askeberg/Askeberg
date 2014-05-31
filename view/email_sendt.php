@@ -1,5 +1,5 @@
 <?php
-include 'include/head.html';
+include 'include/head.php';
 ?>
 
 <div id="content">
@@ -14,7 +14,7 @@ Dersom du ikke får noen tilbakemelding, vennligst ring/sms oss på tlf 970 65 0
 </div>
 
 <?php
-include 'include/foot.html';
+include 'include/foot.php';
 ?>
 
 </div>

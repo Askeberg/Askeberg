@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php session_start(); ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="cache-control" content="no-cache" />
@@ -31,7 +32,8 @@
 
 <div id="login">
 <form name="form" action="../controller/login.php" method="post">
-<input name="pass" type="password" />
+<h5 class="invalid"><?php echo $_SESSION['info'][0]; ?></h5>
+<input name="key" type="password" />
 <input name="submit" type="submit" value="Login" />
 </form>
 </div>

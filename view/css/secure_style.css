@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+#edit {
+	position: absolute;
+	top: 16px;
+	right: 30px;
+}
+.secure_left {
+    width: 211px;
+    float: left;
+}
+.secure_right {
+    margin-left: 250px;
+}
+.secure_right input {
+    font-size: 13px;
+    color: #555;
+	width: 300px;
+	height: 17px;
+}
+.secure_right input[type=checkbox] {
+	width: 17px;
+	height: 17px;
+}
+.secure_right input[type=submit] {
+	width: 60px;
+	height: 19px;
+}
+.secure_right select {
+    font-size: 13px;
+    color: #555;
+	height: 19px;
+}
+.secure_right textarea {
+    font-size: 13px;
+    color: #555;
+	width: 300px;
+	height: 90px;
+	margin-bottom: 6px;
+}
+.secure_right label {
+    font-size: 13px;
+    color: #555;
+    margin-right: 30px;
+}
+.secure_right .img {
+	text-align: right;
+}
+.secure_right .img img {
+	cursor: pointer;
+}
+.link tr td {
+	padding: 3px 6px 3px 2px;
+	min-height: 0px;
+	cursor: pointer;
+}
+.link tr:hover td {
+	background: #a0beeb;
+}
+

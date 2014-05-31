@@ -5,7 +5,7 @@ body, div, h1, h2, h3, h4, h5, h6, p, a, ul, li, img, table, tr, th, td, form, i
     padding: 0px;
     font-family: Oxygen, Arial;
 	font-weight: normal;
-    color: #111;
+    color: #333;
     font-size: 16px;
 	vertical-align: bottom;
     text-decoration: none;
@@ -20,6 +20,15 @@ h3 {
 	font-weight: bold;
 	padding-bottom: 10px;
 }
+h4 {
+    font-size: 14px;
+	font-weight: bold;
+	padding-bottom: 6px;
+}
+h5 {
+    font-size: 13px;
+	font-weight: bold;
+}
 p {
     font-size: 13px;
     color: #555;
@@ -30,6 +39,23 @@ a {
 	color: #102b72;
     text-decoration: underline;
 }
+table {
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+th {
+	font-weight: bold;
+	font-size: 14px;
+	padding-bottom: 6px;
+	text-align: left;
+	vertical-align: top;
+}
+td {
+	min-height: 22px;
+	font-size: 13px;
+    color: #555;
+    vertical-align: top;
+}
 input {
 	width: 396px;
 	height: 24px;
@@ -37,6 +63,10 @@ input {
 input[type=submit] {
 	width: 60px;
 	height: 26px;
+	margin-right: 6px;
+}
+select {
+	height: 24px;
 }
 textarea {
 	width: 396px;
@@ -130,6 +160,7 @@ textarea {
 	    margin-bottom: 10px;
 	    padding: 20px 20px 20px 20px;
 		display: table;
+		position: relative;
 	}
 
 	#foot {
@@ -155,6 +186,51 @@ textarea {
 }
 .right .img {
 	text-align: right;
+}
+.invalid {
+	color: #ff6b75;
+}
+.inline {
+	display: inline;
+}
+.w20 {
+	width: 20px !important;
+}
+.w30 {
+	width: 30px !important;
+}
+.w40 {
+	width: 40px !important;
+}
+.w54 {
+	width: 54px !important;
+}
+.w60 {
+	width: 60px !important;
+}
+.w74 {
+	width: 74px !important;
+}
+.w80 {
+	width: 80px !important;
+}
+.w100 {
+	width: 100px !important;
+}
+.w140 {
+	width: 140px !important;
+}
+.w160 {
+	width: 160px !important;
+}
+.w200 {
+	width: 200px !important;
+}
+.w234 {
+	width: 234px !important;
+}
+.w240 {
+	width: 240px !important;
 }
 
 
