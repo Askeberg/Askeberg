@@ -9,10 +9,10 @@ if (!isset($_POST['submit'])) {
 	header('Location: ../view/index.php');
 }
 else if ($_POST['submit'] == 'Login' && $link = Db::connect()) {
+	Table::createTables($link);
 	$auth = new Auth("../view/index.php", "../view/prosjekter.php", $_POST['key'], $link);
 	$auth->setValidated($link);
 	$auth->authenticate();
-	Table::createTables($link);
 	$link->close();
 }
 else {

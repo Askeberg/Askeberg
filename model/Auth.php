@@ -21,9 +21,9 @@ class Auth {
 		
 		if (!$result = $stmt->get_result()) return null;
 		
-		if (!$row = $result->fetch_array()) return null;
-		
-		if ($row['key_'] == $this->key) $this->validated = true;
+		while ($row = $result->fetch_array()) {
+			if ($row['key_'] == $this->key) $this->validated = true;
+		}
 		
 		$stmt->close();
 	}
