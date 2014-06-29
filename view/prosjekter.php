@@ -25,7 +25,7 @@ $link->close();
 
 <table id="projects" class="link">
 <tr>
-	<th>Prosjektnavn</th>
+	<th>Prosjekter:</th>
 </tr>
 <?php
 if ($projects) {
@@ -41,6 +41,19 @@ if ($projects) {
 <?php
 if ($project) {
 	include 'include/prosjektdetaljer.php';
+}
+else if ($projects[0]) {
+	$project = $projects[0];
+	include 'include/prosjektdetaljer.php';
+}
+else {
+?>
+<div class="secure_right">
+
+<h3>Det finnes ingen prosjekter å vise.</h3>
+
+</div>
+<?php
 }
 ?>
 

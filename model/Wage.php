@@ -4,20 +4,35 @@ class wage {
 	public $wageId;
 	public $projectId;
 	public $person;
-	public $date;
-	public $hours;
+	public $start;
+	public $end;
 	public $description;
 	
-	function __construct($wageId, $projectId, $person, $date, $hours, $description) {
+	function __construct($wageId, $projectId, $person, $start, $end, $description) {
 		$this->wageId = $wageId;
 		$this->projectId = $projectId;
 		$this->person = $person;
-		$this->date = $date;
-		$this->hours = $hours;
+		$this->start = $start;
+		$this->end = $end;
 		$this->description = $description;
 	}
 	
-	public static function deletFromDb($wageId, $link) {
+	public static function deleteAllFromDb($projectId, $link) {
+		$query = "DELETE FROM wages
+				WHERE projectId LIKE ?";
+		
+		if (!($stmt = $link->prepare($query))) return false;
+		
+		if (!$stmt->bind_param("i", $projectId)) return false;
+		
+		if (!$stmt->execute()) return false;
+		
+		$stmt->close();
+		
+		return true;
+	}
+	
+	public static function deleteFromDb($wageId, $link) {
 		$query = "DELETE FROM wages
 				WHERE wageId LIKE ?";
 		
@@ -35,7 +50,7 @@ class wage {
 	public static function getWagesByProjectId($projectId, $link) {
 		$query = "SELECT * FROM wages
 				WHERE projectId LIKE ?
-				ORDER BY date";
+				ORDER BY start";
 		
 		if (!($stmt = $link->prepare($query))) return null;
 		
@@ -56,8 +71,8 @@ class wage {
 	
 	public static function getWagesByDate($fromDate, $toDate, $link) {
 		$query = "SELECT * FROM wages
-				WHERE date BETWEEN ? AND ?
-				ORDER BY date";
+				WHERE start BETWEEN ? AND ?
+				ORDER BY start";
 		
 		if (!($stmt = $link->prepare($query))) return null;
 		
@@ -81,8 +96,7 @@ class wage {
 	private static function getRows($result) {
 		$wages = null;
 		while ($row = $result->fetch_array()) {
-			$wage = new Wage($row['wageId'], $row['projectId'], $row['person'],
-							$row['date'], $row['hours'], $row['description']);
+			$wage = new Wage($row['wageId'], $row['projectId'], $row['person'], $row['start'], $row['end'], $row['description']);
 			
 			$wages[] = $wage;
 		}
@@ -95,25 +109,25 @@ class wage {
 					wageId,
 					projectId,
 					person,
-					date,
-					hours,
+					start,
+					end,
 					description
 				)
 				VALUES (?, ?, ?, ?, ?, ?)
 				
 				ON DUPLICATE KEY UPDATE
-					date = VALUES (date),
-					hours = VALUES (hours),
+					start = VALUES (start),
+					end = VALUES (end),
 					description = VALUES (description)";
 		
 		if (!($stmt = $link->prepare($query))) return null;
 		
-		if (!$stmt->bind_param("iisids",
+		if (!$stmt->bind_param("iisiis",
 				$this->wageId,
 				$this->projectId,
 				$this->person,
-				$this->date,
-				$this->hours,
+				$this->start,
+				$this->end,
 				$this->description)) {
 			return null;
 		}

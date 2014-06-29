@@ -31,8 +31,8 @@
 </ul>
 
 <div id="login">
-<form name="form" action="../controller/login.php" method="post">
-<h5 class="invalid"><?php echo $_SESSION['info'][0]; ?></h5>
+<form name="login" action="../controller/login.php" method="post">
+<h5 class="invalid"><?php if (isset($_SESSION['info'])) echo $_SESSION['info'][0]; ?></h5>
 <input name="key" type="password" />
 <input name="submit" type="submit" value="Login" />
 </form>

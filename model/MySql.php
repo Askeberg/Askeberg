@@ -1,9 +1,9 @@
 <?php
 
 class Db {
-	private static $host = '109.247.37.74';
-	private static $user = 'kiwz';
-	private static $pass = 'test';
+	private static $host = '127.0.0.1';
+	private static $user = 'root';
+	private static $pass = '';
 	private static $db = 'askeberg';
 	private static $port = '3306';
 	
@@ -38,8 +38,8 @@ class Table {
 					wageId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 					projectId INT NOT NULL,
 					person VARCHAR(255) NOT NULL,
-					date BIGINT NOT NULL DEFAULT 0,
-					hours DECIMAL(6,1) NOT NULL DEFAULT 0,
+					start BIGINT NOT NULL DEFAULT 0,
+					end BIGINT NOT NULL DEFAULT 0,
 					description VARCHAR(255) NOT NULL
 				)";
 		

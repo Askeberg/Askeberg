@@ -59,11 +59,19 @@ td {
 input {
 	width: 396px;
 	height: 24px;
+	padding-left: 2px;
 }
 input[type=submit] {
 	width: 60px;
 	height: 26px;
 	margin-right: 6px;
+	padding-left: 0px;
+}
+input[type=button] {
+	width: 60px;
+	height: 26px;
+	margin-right: 6px;
+	padding-left: 0px;
 }
 select {
 	height: 24px;
@@ -71,17 +79,18 @@ select {
 textarea {
 	width: 396px;
 	height: 100px;
+	padding-left: 2px;
 }
 
 
 #container {
     width: 100%;
-    min-width: 900px;
+    min-width: 1200px;
 }
 
 	#header {
     	background: #fefefe;
-	    width: 780px;
+	    width: 1120px;
 	    height: 50px;
 	    margin: 0 auto;
 	    margin-top: 10px;
@@ -130,7 +139,7 @@ textarea {
     		/*background: #102b72;*/
     		background: url(../img/logo_back.png);
 			background-size: 100% 100%;
-			width: 186px;
+			width: 526px;
 	    	height: 50px;
     		float: left;
 			display: table;
@@ -154,7 +163,7 @@ textarea {
 
 	#content {
     	background: #fefefe;
-	    width: 752px;
+	    width: 1092px;
 	    min-height: 440px;
 	    margin: 0 auto;
 	    margin-bottom: 10px;
@@ -167,7 +176,7 @@ textarea {
    		/*background: #d1d1d1;*/
    		background: url(../img/logo_back.png);
 		background-size: 100% 100%;
-	    width: 780px;
+	    width: 1120px;
 	    margin: 0 auto;
 	    margin-bottom: 40px;
 		text-align: center;
@@ -231,6 +240,9 @@ textarea {
 }
 .w240 {
 	width: 240px !important;
+}
+.w280 {
+	width: 280px !important;
 }
 
 

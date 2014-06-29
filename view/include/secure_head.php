@@ -41,7 +41,7 @@ if (!$_SESSION['auth']) {
 </ul>
 
 <div id="login">
-<form name="form" action="../controller/login.php" method="post">
+<form name="logout" action="../controller/login.php" method="post">
 <input name="submit" type="submit" value="Logout" />
 </form>
 </div>

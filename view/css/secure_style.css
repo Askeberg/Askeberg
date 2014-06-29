@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+#wages td {
+	height: 26px;
+}
+#wages p {
+	padding-top: 2px;
+	padding-left: 4px;
+}
+
 #edit {
 	position: absolute;
 	top: 16px;
@@ -23,6 +31,10 @@
 	height: 17px;
 }
 .secure_right input[type=submit] {
+	width: 60px;
+	height: 19px;
+}
+.secure_right input[type=button] {
 	width: 60px;
 	height: 19px;
 }

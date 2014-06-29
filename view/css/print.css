@@ -1,0 +1,17 @@
+@media print {    
+	.no-print, .no-print * {
+		display: none !important;
+	}
+	#wages th {
+		text-align: left;
+	}
+	.e80 {
+		width: 80em;
+	}
+	.e100 {
+		width: 100em;
+	}
+	.e280 {
+		width: 280em;
+	}
+}

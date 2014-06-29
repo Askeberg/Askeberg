@@ -13,7 +13,7 @@ require_once('../model/Project.php');
 
 $link = Db::connect();
 
-if ($_POST['submit'] == "Slett") {
+if ($_POST['event'] == "delete") {
 	Project::deletFromDb($_POST['projectId'], $link);
 	
 	header('Location: ../view/prosjekter.php');

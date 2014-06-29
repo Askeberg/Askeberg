@@ -28,12 +28,12 @@ $link->close();
 
 <table id="projects" class="link">
 <tr>
-	<th>Prosjektnavn</th>
+	<th>Prosjekter</th>
 </tr>
 <?php
 if ($projects) {
 	foreach ($projects as $listProject) {
-		echo '<tr onclick="location.href=\'prosjekter.php?projectId=' . $listProject->projectId . '\'"><td>' . $listProject->projectName . '</td></tr>' . "\n";
+		echo '<tr onclick="location.href=\'prosjekt.php?projectId=' . $listProject->projectId . '\'"><td>' . $listProject->projectName . '</td></tr>' . "\n";
 	}
 }
 ?>
@@ -105,16 +105,10 @@ if ($projects) {
 <br />
 
 <input name="projectId" type="hidden" value="<?php echo $project->projectId; ?>" />
+<input name="event" type="hidden" value="save" />
 
-<input name="submit" type="submit" value="Lagre" />
-<?php
-if ($project->projectId) {
-	echo
-'<input name="submit" type="submit" value="Slett" />
-<p class="inline invalid">Husk at også filer slettes permanent</p>';
-}
-
-?>
+<input name="lagre" type="button" value="Lagre" onclick="submit();" />
+<input name="slett" type="hidden" value="Slett" onclick="deleteProject();" />
 
 </form>
 
@@ -125,7 +119,30 @@ if ($project->projectId) {
 </div>
 
 <script type="text/javascript">
+	var form = document.form;
+	var projectId = form.projectId.value;
 	
+	if (projectId != 0) {
+		form.slett.type = 'button';
+		/*var button = document.createElement('input');
+		button.name = 'delete';
+		button.type = 'button';
+		button.value = 'Slett';
+		button.onclick = function() { deleteProject(this.parentNode, projectId); };
+		document.form.appendChild(button);*/
+	}
+	
+	function deleteProject() {
+		if (confirm("Er du sikker på at du vil slette dette prosjektet samt tilhørende vedlegg?")) {
+			form.event.value = 'delete';
+			if (confirm("Vil du også slette timeliste tilhørende dette prosjektet?")) {
+				request('saveWage.php', ['event', 'projectId'], ['deleteAll', projectId], function() { form.submit(); });
+			}
+			else {
+				form.submit();
+			}
+		}
+	}
 </script>
 </body>
 </html>

@@ -1,5 +1,10 @@
 <?php
-include 'include/head.php';
+require_once 'include/head.php';
+require_once '../model/MySql.php';
+
+$link = Db::connect();
+Table::createTables($link);
+$link = null;
 ?>
 
 <div id="content">

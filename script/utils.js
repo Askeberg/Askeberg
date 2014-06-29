@@ -1,16 +1,11 @@
-function buildWages(result) {
+function printWages(result) {
 	for (var i = 0; i < result.length; i++) {
 		var wage = result[i];
-		addWage(wage.wageId, wage.projectId, wage.person, wage.date, wage.hours, wage.description);
+		addPrintWage(wage.wageId, wage.projectId, wage.person, wage.start, wage.end, wage.description);
 	}
 }
 
-function addNewWage(result) {
-	var wage = result;
-	addWage(wage.wageId, wage.projectId, wage.person, wage.date, wage.hours, wage.description);
-}
-
-function addWage(wageId, projectId, person, date, hours, description) {
+function addPrintWage(wageId, projectId, person, start, end, description) {
 	var table = document.getElementById('wages');
 	
 	var tr = document.createElement('tr');
@@ -21,13 +16,79 @@ function addWage(wageId, projectId, person, date, hours, description) {
 	tdPerson.innerText = person;
 	
 	var tdDate = document.createElement('td');
-	tdDate.innerText = getDate(date);
+	tdDate.innerText = getDate(start);
+	
+	var tdStart = document.createElement('td');
+	tdStart.innerText = getTime(start);
+	
+	var tdEnd = document.createElement('td');
+	tdEnd.innerText = getTime(end);
 	
 	var tdHours = document.createElement('td');
-	tdHours.innerText = hours;
+	var hours = getHours(start, end);
+	tdHours.innerText = hours.replace('.', ',');
 	
 	var tdDescription = document.createElement('td');
 	tdDescription.innerText = description;
+	
+	tr.appendChild(tdPerson);
+	tr.appendChild(tdDate);
+	tr.appendChild(tdStart);
+	tr.appendChild(tdEnd);
+	tr.appendChild(tdHours);
+	tr.appendChild(tdDescription);
+	
+	table.appendChild(tr);
+};
+
+function buildWages(result) {
+	for (var i = 0; i < result.length; i++) {
+		var wage = result[i];
+		addWage(wage.wageId, wage.projectId, wage.person, wage.start, wage.end, wage.description);
+	}
+}
+
+function addNewWage(result) {
+	var wage = result;
+	addWage(wage.wageId, wage.projectId, wage.person, wage.start, wage.end, wage.description);
+}
+
+function addWage(wageId, projectId, person, start, end, description) {
+	var table = document.getElementById('wages');
+	
+	var tr = document.createElement('tr');
+	tr.id = wageId;
+	tr.classList.add(projectId);
+	
+	var tdPerson = document.createElement('td');
+	var pPerson = document.createElement('p');
+	pPerson.innerText = person;
+	tdPerson.appendChild(pPerson);
+	
+	var tdDate = document.createElement('td');
+	var pDate = document.createElement('p');
+	pDate.innerText = getDate(start);
+	tdDate.appendChild(pDate);
+	
+	var tdStart = document.createElement('td');
+	var pStart = document.createElement('p');
+	pStart.innerText = getTime(start);
+	tdStart.appendChild(pStart);
+	
+	var tdEnd = document.createElement('td');
+	var pEnd = document.createElement('p');
+	pEnd.innerText = getTime(end);
+	tdEnd.appendChild(pEnd);
+	
+	var tdHours = document.createElement('td');
+	var pHours = document.createElement('p');
+	pHours.innerText = getHours(start, end);
+	tdHours.appendChild(pHours);
+	
+	var tdDescription = document.createElement('td');
+	var pDescription = document.createElement('p');
+	pDescription.innerText = description;
+	tdDescription.appendChild(pDescription);
 	
 	var tdEdit = document.createElement('td');
 	tdEdit.classList.add('img');
@@ -39,6 +100,8 @@ function addWage(wageId, projectId, person, date, hours, description) {
 	
 	tr.appendChild(tdPerson);
 	tr.appendChild(tdDate);
+	tr.appendChild(tdStart);
+	tr.appendChild(tdEnd);
 	tr.appendChild(tdHours);
 	tr.appendChild(tdDescription);
 	tr.appendChild(tdEdit);
@@ -50,7 +113,7 @@ function addWage(wageId, projectId, person, date, hours, description) {
 function wageWrite(row) {
 	var tdPerson = row.children[0];
 	var selPerson = document.createElement('select');
-	selPerson.classList.add('w74');
+	selPerson.classList.add('w80');
 	selPerson.options[0] = new Option('Andreas', 'Andreas');
 	selPerson.options[1] = new Option('Thomas', 'Thomas');
 	selPerson.value = tdPerson.innerText;
@@ -69,17 +132,38 @@ function wageWrite(row) {
 	}
 	tdDate.appendChild(inpDate);
 	
-	var tdHours = row.children[2];
+	var tdStart = row.children[2];
+	var inpStart = document.createElement('input');
+	inpStart.classList.add('w54');
+	inpStart.type = 'text';
+	inpStart.value = tdStart.innerText;
+	while (tdStart.firstChild) {
+		tdStart.removeChild(tdStart.firstChild);
+	}
+	tdStart.appendChild(inpStart);
+	
+	var tdEnd = row.children[3];
+	var inpEnd = document.createElement('input');
+	inpEnd.classList.add('w54');
+	inpEnd.type = 'text';
+	inpEnd.value = tdEnd.innerText;
+	while (tdEnd.firstChild) {
+		tdEnd.removeChild(tdEnd.firstChild);
+	}
+	tdEnd.appendChild(inpEnd);
+	
+	var tdHours = row.children[4];
 	var inpHours = document.createElement('input');
 	inpHours.classList.add('w54');
 	inpHours.type = 'text';
 	inpHours.value = tdHours.innerText;
+	inpHours.readOnly = true;
 	while (tdHours.firstChild) {
 		tdHours.removeChild(tdHours.firstChild);
 	}
 	tdHours.appendChild(inpHours);
 	
-	var tdDescription = row.children[3];
+	var tdDescription = row.children[5];
 	var inpDescription = document.createElement('input');
 	inpDescription.classList.add('w234');
 	inpDescription.type = 'text';
@@ -89,37 +173,76 @@ function wageWrite(row) {
 	}
 	tdDescription.appendChild(inpDescription);
 	
-	var tdEdit = row.children[4];
+	var tdEdit = row.children[6];
 	tdEdit.innerHTML = '<img src="../view/img/v.png" width="19" onclick="wageRead(this.parentNode.parentNode);" />';
 };
 
 function wageRead(row) {
-	request('saveWage.php', ['submit', 'wageId', 'projectId', 'person', 'date', 'hours', 'description'],
+	request('saveWage.php', ['event', 'wageId', 'projectId', 'person', 'date', 'start', 'end', 'description'],
 			['save',
 			 row.id,
 			 row.className,
 			 row.children[0].children[0].value,
 			 row.children[1].children[0].value,
 			 row.children[2].children[0].value,
-			 row.children[3].children[0].value]);
+			 row.children[3].children[0].value,
+			 row.children[5].children[0].value]);
 	
 	var tdPerson = row.children[0];
 	var selPerson = tdPerson.children[0];
-	tdPerson.innerText = selPerson.value;
+	var pPerson = document.createElement('p');
+	pPerson.innerText = selPerson.value;
+	while (tdPerson.firstChild) {
+	    tdPerson.removeChild(tdPerson.firstChild);
+	}
+	tdPerson.appendChild(pPerson);
 	
 	var tdDate = row.children[1];
 	var inpDate = tdDate.children[0];
-	tdDate.innerText = inpDate.value;
+	var pDate = document.createElement('p');
+	pDate.innerText = inpDate.value;
+	while (tdDate.firstChild) {
+	    tdDate.removeChild(tdDate.firstChild);
+	}
+	tdDate.appendChild(pDate);
 	
-	var tdHours = row.children[2];
-	var inpHours = tdHours.children[0];
-	tdHours.innerText = inpHours.value;
+	var tdStart = row.children[2];
+	var inpStart = tdStart.children[0];
+	var pStart = document.createElement('p');
+	pStart.innerText = inpStart.value.replace('.', ':');
+	while (tdStart.firstChild) {
+		tdStart.removeChild(tdStart.firstChild);
+	}
+	tdStart.appendChild(pStart);
 	
-	var tdDescription = row.children[3];
+	var tdEnd = row.children[3];
+	var inpEnd = tdEnd.children[0];
+	var pEnd = document.createElement('p');
+	pEnd.innerText = inpEnd.value.replace('.', ':');
+	while (tdEnd.firstChild) {
+		tdEnd.removeChild(tdEnd.firstChild);
+	}
+	tdEnd.appendChild(pEnd);
+	
+	var tdHours = row.children[4];
+	var inpHours = getHours(getUnix('01.01.1970', tdStart.innerText), getUnix('01.01.1970', tdEnd.innerText));
+	var pHours = document.createElement('p');
+	pHours.innerText = inpHours;
+	while (tdHours.firstChild) {
+		tdHours.removeChild(tdHours.firstChild);
+	}
+	tdHours.appendChild(pHours);
+	
+	var tdDescription = row.children[5];
 	var inpDescription = tdDescription.children[0];
-	tdDescription.innerText = inpDescription.value;
+	var pDescription = document.createElement('p');
+	pDescription.innerText = inpDescription.value;
+	while (tdDescription.firstChild) {
+		tdDescription.removeChild(tdDescription.firstChild);
+	}
+	tdDescription.appendChild(pDescription);
 	
-	var tdEdit = row.children[4];
+	var tdEdit = row.children[6];
 	tdEdit.innerHTML = '<img src="../view/img/edit.png" width="19" onclick="wageWrite(this.parentNode.parentNode);" />';
 };
 
@@ -128,21 +251,24 @@ function saveWage(row) {
 	var projectId = row.className;
 	var person = row.children[0].children[0].value;
 	var date = row.children[1].children[0].value;
-	var hours = row.children[2].children[0].value;
-	var description = row.children[3].children[0].value;
+	var start = row.children[2].children[0].value;
+	var end = row.children[3].children[0].value;
+	var description = row.children[5].children[0].value;
 	
-	request('saveWage.php', ['submit', 'wageId', 'projectId', 'person', 'date', 'hours', 'description'],
-			['save', wageId, projectId, person, date, hours, description], addNewWage);
+	request('saveWage.php', ['event', 'wageId', 'projectId', 'person', 'date', 'start', 'end', 'description'],
+			['save', wageId, projectId, person, date, start, end, description], addNewWage);
 	
 	row.children[1].children[0].value = '';
 	row.children[2].children[0].value = '';
 	row.children[3].children[0].value = '';
+	row.children[4].children[0].value = '';
+	row.children[5].children[0].value = '';
+	row.children[6].children[0].value = '';
 }
 
 function deleteWage(row) {
-	var result = confirm("Er du sikker på at du vil slette denne linjen?");
-	if (result) {
-		request('saveWage.php', ['submit', 'wageId'], ['delete', row.id]);
+	if (confirm("Er du sikker på at du vil slette denne linjen?")) {
+		request('saveWage.php', ['event', 'wageId'], ['delete', row.id]);
 		row.parentNode.removeChild(row);
 	}
 }
@@ -183,6 +309,18 @@ function request(fileName, vars, values, handleResult) {
 
 /**
  * 
+ * @param start in seconds
+ * @param end in seconds
+ * @returns Hours between the times
+ */
+function getHours(start, end) {
+	var hours = (end - start) / 3600;
+	
+	return hours.toFixed(2);
+};
+
+/**
+ * 
  * @param date dd.mm.yyyy
  * @param time hh:mm
  * @returns Unix timestamp
@@ -211,6 +349,20 @@ function getDate(unix) {
 	date = day + "." + month + "." + year;
 	
 	return date;
+};
+
+/**
+ * 
+ * @param unix timestamp
+ * @returns formatted time as hh:mm
+ */
+function getTime(unix) {
+	var date = new Date(unix * 1000);
+	var hours = this.pad(date.getHours());
+	var minutes = this.pad(date.getMinutes());
+	var time = hours + ":" + minutes;
+	
+	return time;
 };
 
 /**
